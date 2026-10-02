@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>अहंकारांच्या झुली</title>
+  <!-- Google Fonts: IBM Plex Sans and IBM Plex Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            devanagari: ['"IBM Plex Sans Devanagari"', '"IBM Plex Sans"', 'sans-serif'],
+            sans: ['"IBM Plex Sans"', '"IBM Plex Sans Devanagari"', 'sans-serif'],
+          },
+          colors: {
+            warmpaper: {
+              50: '#FAF8F5',
+              100: '#F5EFEB',
+              200: '#EADECE',
+              800: '#2A2624',
+              900: '#181615',
+              950: '#11100F',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
+      word-break: normal;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .essay-body {
+      text-align: justify;
+      text-justify: inter-word;
+      line-height: 2.05;
+      font-size: 1.18rem;
+    }
+
+    @media (max-width: 640px) {
+      .essay-body {
+        font-size: 1.075rem;
+        line-height: 1.95;
+      }
+    }
+
+    .separator-centered {
+      text-align: center;
+      letter-spacing: 0.45em;
+      user-select: none;
+    }
+
+    /* Subtle Animated SVG Shroud Keyframes */
+    @keyframes floatLayerA {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.75; }
+      50% { transform: scale(1.06) rotate(3deg); opacity: 0.95; }
+    }
+    @keyframes floatLayerB {
+      0%, 100% { transform: scale(1.04) rotate(0deg); opacity: 0.65; }
+      50% { transform: scale(0.97) rotate(-4deg); opacity: 0.88; }
+    }
+    @keyframes floatLayerC {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+      50% { transform: scale(1.08) rotate(5deg); opacity: 0.85; }
+    }
+    @keyframes corePulse {
+      0%, 100% { transform: scale(0.95); filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.7)); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 0 28px rgba(251, 146, 60, 0.95)); }
+    }
+
+    .anim-layer-a {
+      transform-origin: center;
+      animation: floatLayerA 9s ease-in-out infinite;
+    }
+    .anim-layer-b {
+      transform-origin: center;
+      animation: floatLayerB 11s ease-in-out infinite;
+    }
+    .anim-layer-c {
+      transform-origin: center;
+      animation: floatLayerC 13s ease-in-out infinite;
+    }
+    .anim-core {
+      transform-origin: center;
+      animation: corePulse 5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-warmpaper-50 dark:bg-warmpaper-950 text-stone-800 dark:text-stone-200 transition-colors duration-300 min-h-screen flex flex-col justify-between selection:bg-amber-200 dark:selection:bg-amber-900/60 selection:text-amber-950 dark:selection:text-amber-100">
+
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-warmpaper-50/85 dark:bg-warmpaper-950/85 border-b border-stone-200/60 dark:border-stone-800/60 transition-colors">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-500 shadow-sm animate-pulse"></span>
+        <span class="text-xs sm:text-sm font-medium tracking-wide text-stone-500 dark:text-stone-400">चिंतन लेख</span>
+      </div>
+
+      <!-- Action Buttons: Theme Toggle & Share -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <!-- Share Button -->
+        <button id="shareBtn" type="button" aria-label="शेअर करा" title="लेख शेअर करा किंवा लिंक कॉपी करा"
+          class="inline-flex items-center justify-center p-2.5 rounded-xl border border-stone-300/70 dark:border-stone-700 bg-white/80 dark:bg-stone-900/80 text-stone-700 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-95 transition-all shadow-sm">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+          </svg>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggle" type="button" aria-label="थीम बदला" title="लाईट / डार्क थीम बदला"
+          class="inline-flex items-center justify-center p-2.5 rounded-xl border border-stone-300/70 dark:border-stone-700 bg-white/80 dark:bg-stone-900/80 text-stone-700 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 active:scale-95 transition-all shadow-sm">
+          <!-- Sun Icon (for Dark Theme) -->
+          <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Moon Icon (for Light Theme) -->
+          <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2.5 bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 text-sm font-medium rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 transform translate-y-3 z-50">
+    लिंक कॉपी झाली!
+  </div>
+
+  <main class="w-full flex-grow py-6 sm:py-12 px-4 sm:px-6">
+    <article class="max-w-2xl mx-auto">
+
+      <!-- Animated SVG Graphic Visualizing 'अहंकारांच्या झुली' (Ego Cloaks / Layers Covering the Core) -->
+      <div class="mb-8 flex justify-center">
+        <div class="relative w-44 h-44 sm:w-56 sm:h-56 flex items-center justify-center">
+          <svg class="w-full h-full filter drop-shadow-md overflow-visible" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Outer Shroud Gradient 1 -->
+              <linearGradient id="layerGrad1" x1="20" y1="20" x2="220" y2="220" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#F43F5E" stop-opacity="0.55"/>
+                <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.4"/>
+              </linearGradient>
+
+              <!-- Middle Shroud Gradient 2 -->
+              <linearGradient id="layerGrad2" x1="220" y1="30" x2="30" y2="210" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FB923C" stop-opacity="0.65"/>
+                <stop offset="60%" stop-color="#EC4899" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#A855F7" stop-opacity="0.5"/>
+              </linearGradient>
+
+              <!-- Inner Dignity/Soft Shroud Gradient 3 -->
+              <linearGradient id="layerGrad3" x1="60" y1="50" x2="180" y2="190" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.75"/>
+                <stop offset="100%" stop-color="#34D399" stop-opacity="0.7"/>
+              </linearGradient>
+
+              <!-- Pure Inner Self Core Gradient -->
+              <radialGradient id="coreGold" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FFFBEB"/>
+                <stop offset="45%" stop-color="#FDE68A"/>
+                <stop offset="85%" stop-color="#F59E0B"/>
+                <stop offset="100%" stop-color="#D97706"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Outer Ego Cloak Layer 1 -->
+            <path class="anim-layer-c" d="M120 18 C175 12, 222 55, 218 115 C215 178, 175 224, 120 220 C65 216, 18 175, 22 120 C26 62, 65 24, 120 18 Z"
+              fill="url(#layerGrad1)" stroke="#C084FC" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.8" />
+
+            <!-- Intermediate Ego Cloak Layer 2 -->
+            <path class="anim-layer-b" d="M120 38 C160 32, 198 70, 194 120 C190 170, 158 202, 120 198 C78 194, 42 165, 46 120 C50 72, 80 44, 120 38 Z"
+              fill="url(#layerGrad2)" stroke="#FB7185" stroke-width="1.4" opacity="0.85" />
+
+            <!-- Natural Dignity / Swabhiman Veil Layer 3 -->
+            <path class="anim-layer-a" d="M120 62 C148 58, 174 85, 172 120 C170 155, 148 178, 120 176 C90 174, 66 150, 68 120 C70 88, 92 66, 120 62 Z"
+              fill="url(#layerGrad3)" stroke="#38BDF8" stroke-width="1.5" opacity="0.9" />
+
+            <!-- Pure Unencumbered Inner Core ("मी" / Pure Spark) -->
+            <circle class="anim-core" cx="120" cy="120" r="28" fill="url(#coreGold)" />
+            <circle cx="120" cy="120" r="16" fill="#FFFFFF" fill-opacity="0.8" />
+            <circle cx="120" cy="120" r="6" fill="#FFFBEB" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Document Title -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center tracking-tight text-stone-900 dark:text-stone-50 mb-10 leading-snug">
+        अहंकारांच्या झुली
+      </h1>
+
+      <!-- Body Paragraphs (faithfully matching source text, justified, no broken words) -->
+      <div class="essay-body space-y-6 text-stone-700 dark:text-stone-300">
+        
+        <p>विश्वाच्या या अफाट पसाऱ्यात खरेतर ‘मी’ असा कोणी नाहीये. I am nothing. पण मनुष्याचे जे शरीररूपी अस्तित्व असते त्याला ‘मी’ म्हणावे की नाही याबद्दल बरीच मतमतांतरे आहेत म्हणून त्याच्या फार खोलात न जाता ‘अहं’ अर्थात ‘अहंकार’ याची थोडीशी सोपी व्याख्या करण्याचा प्रयत्न म्हणून मनुष्याचे शरीर म्हणजे ‘मी’ अशी कल्पना करूया. या ‘मी’ला एक स्वाभिमान अर्थात Self Esteem असतो. अशी कल्पना करूया की या ‘मी’ वर एक अदृष्य पण हलकासा असा थर आहे. आपण अंगावर कपडे घालतो ना; तसेच काहीसे. हा थर म्हणजे ‘स्वाभिमान’ (Self Esteem or Dignity).</p>
+
+        <p>मी+स्वाभिमान हे ‘माझे’ किमान सभ्य अस्तित्व असते. (Minimum Dignified Existence). याला जोपर्यंत धक्का पोहोचत नाही तोपर्यंत ‘मला’ इतर कोणत्याही व्यक्ती/वस्तू/परिस्थिती बद्दल तक्रार असण्याचे काहीच कारण नाही.</p>
+
+        <p>हा जो ‘मी’ असतो ना, त्याच्यात उपजतच सगळे चांगले गुण, जसे की क्षमाशीलता, करुणा, सहवेदना आणि इतर नैसर्गिकरित्या असतातच.</p>
+
+        <p>कालौघात हा ‘मी’ मोठा होऊ लागतो, त्याला वेगवेगळे अनुभव येऊन त्याच्या नोंदी स्मृतींमध्ये साठवल्या जाऊ लागतात (memory) आणि त्याचा वापर करून वर्तमानात काय करायचे/काय नाही याची ‘समज’ विकसित होऊ लागते. हीच आपली अक्कल किंवा बुद्धिमत्ता (intelligence). ही ‘अक्कल’ काय केल्याने ‘मला’ चांगले वाटते (आनंद मिळतो) किंवा कशाने दुखः होते (वाईट वाटते) हे लगेच ओळखू शकते व त्याप्रमाणे ‘माझे’ वर्तन होऊ लागते. म्हणजेच ‘माझ्या’वर ‘मला हवे तसे झाले पाहिजे’ या अपेक्षेचा एक अदृष्य थर जमा होऊ लागतो. <em>अहंकार आकार घेऊ लागतो.</em></p>
+
+        <p>जसजसे वय वाढू लागते तसतसे ‘माझ्या’ या विविध अपेक्षांचे वेगवेगळे थर मूळ ‘मी’वर चढू लागतात व अहंकार वाढीस लागतो. ‘मी’ कोणीतरी वेगळा आहे, इतरांपेक्षा श्रेष्ठ आहे. ‘मला’च सर्व कळते. ‘माझे’ सर्व काही बरोबरच असते. ‘मी’ सोडून बाकीचे बावळट/बिनकामाचे आहेत. ही आणि यासारखी इतर अनेक कारणे. ही अपेक्षांची कारणे विविध असतात पण ती सगळी स्व-केंद्रित (self-centric) असतात. या ‘माझ्या’ वेगवेगळ्या अपेक्षांच्या अहंकाररूपी थरांची एकंदर जाडी किती असते त्यावर त्याचा आतल्या ‘मला’ किती त्रास होतो ते अवलंबून असते. जितका अहंकार जास्त अर्थातच त्या प्रमाणात वेदना जास्त.</p>
+
+        <p>वास्तवाची जाणीव (awareness) नसेल तर आतील ‘मी’ला हे अदृष्य पण गुबगुबीत अहंकारांचे थर एखाद्या मखमली उबदार स्वेटर प्रमाणे सुखावह ऊब देत आहेत असे वाटते. पण प्रत्यक्षात हा उबदार वाटणारा स्वेटर त्याच्या आतील ‘मी’ ला या जगातील वास्तविक तपमानापासून दूर ठेवून अंतिमत: नुकसानच करत असतो.</p>
+
+        <div class="separator-centered py-4 text-amber-600/80 dark:text-amber-400/80 text-xl font-medium tracking-widest" aria-hidden="true">
+          ✬✬✬
+        </div>
+
+        <p>‘मी’वरचे हे अदृष्य अहंकार-थर जास्त म्हणजे मग एकंदर शरीर आकारमानाने मोठे होते. परिणामतः ‘माझी’ हालचाल मंदावते. आळस भरतो. इतक्या अदृष्य पण आकाराने मोठ्ठ्या शरीराची हालचाल करायला आतल्या ‘मला’ जास्त कष्ट करावे लागतात, म्हणजे आतला ‘मी’ लवकर थकून जातो.</p>
+
+        <div class="separator-centered py-4 text-amber-600/80 dark:text-amber-400/80 text-xl font-medium tracking-widest" aria-hidden="true">
+          ✬✬✬
+        </div>
+
+        <p>या अदृष्य पण स्थूल शरीररूपी ‘माझी’ इतर कोणाशी भेट होते तेंव्हा त्या व्यक्तीस आतल्या ‘मी’ आधी हा अहंकार धडकतो. अहंकाराच्या धडकण्यानेच ती व्यक्ती जर दूर गेली तर आत अडकून पडलेल्या ‘माझे’ बोलणे/मत त्या व्यक्तीपर्यंत पोहोचू शकत नाही आणि जर हा अहंकार दुसऱ्याच्या स्वाभिमानालाच धडकला तर मग विषयच संपला.</p>
+
+        <div class="separator-centered py-4 text-amber-600/80 dark:text-amber-400/80 text-xl font-medium tracking-widest" aria-hidden="true">
+          ✬✬✬
+        </div>
+
+        <p>अशा या आकाराने मोठ्ठ्या झालेल्या ‘मला’ मग घरी/कुटुंबात/समाजात वावरताना देखील दृश्य शरीरापेक्षा जास्त जागा लागते. ‘मी’ आणि माझे कुटुंब/मैत्र यांच्यात आधी हा थर त्याची जागा व्यापतो व ‘माझे’ इतरांपासूनचे अंतर वाढवतो. ‘मी’ व इतरांमधील जवळीक/मैत्री/स्नेह यांच्यात हा अहंकाराचा थर मलाच त्रासदायक ठरतो.</p>
+
+        <div class="separator-centered py-4 text-amber-600/80 dark:text-amber-400/80 text-xl font-medium tracking-widest" aria-hidden="true">
+          ✬✬✬
+        </div>
+
+        <p>या ‘अहंकार’थराची जाडी जितकी जास्त तितका त्याचा आतल्या ‘मी’वर भार जास्त. हा भार आत अडकून पडलेल्या ‘मला’ माझ्यातील उत्तमोत्तम उपजत गुण वापरण्याची संधीच देत नाही. ‘माझ्या’तील उपजत क्षमाशीलता, करुणा, सहवेदना आणि इतर सद्गुण या अहंकारारूपी थराच्या प्रचंड दबावामुळे बाहेर येऊच शकत नाहीत.</p>
+
+        <div class="separator-centered py-4 text-amber-600/80 dark:text-amber-400/80 text-xl font-medium tracking-widest" aria-hidden="true">
+          ✬✬✬
+        </div>
+
+        <p>वास्तवाची जाणीव (awareness) नसेल तर मग आतल्या ‘मला’ असे वाटू लागते की हे विविध पण अदृष्य ‘अहंकार’रूपी थर म्हणजेच माझा स्वाभिमान. असे झाले की प्रत्यक्षात या अदृष्य अपेक्षांच्या थरांच्या आत खोलवर अडकून पडलेल्या ‘माझे’ खूपच नुकसान होते. कारण मूळ ‘मी’चा इतरांबरोबरचा सर्व संपर्क (communication) अहंकारातूनच होऊ लागतो. हा ‘अहंकार’भार जितका कमी किंवा शून्यवत तितका मूळच्या सद्गुणी निरागस ‘माझा’ बाह्य जगाशी संपर्क अर्थातच सोपा आणि अधिक.</p>
+
+        <p>‘माझे’ इतके जास्त नुकसान करणारे हे विविध ‘अहंकार’रूपी थर वाढवणे अथवा जवळ जवळ नाहीसे करणे ‘मला’च शक्य असते. कारण मुळात हे थर वाढण्यासाठी लागणारी सर्व कारणे स्व-केंद्रित म्हणजे माझ्यातच असतात. जोपर्यंत ‘मी’च हे अहंकार थरांचे जोखड दूर करण्याच्या प्रयत्न करत नाही तोपर्यंत ‘माझे’ खरे हितचिंतक या अदृष्य थरांच्या आत खोलवर अडकून पडलेल्या ‘माझ्या’पर्यंत पोहोचूच शकत नाहीत.</p>
+
+        <p>‘अहंकार’ शून्यवत करणे म्हणजे ‘स्वाभिमान’ उघड्यावर टाकणे असा याचा अर्थ अजिबातच नाही. प्रत्येक ‘मी’चा ‘स्वाभिमान’ जर आवश्यक इतका कणखर असेल तर त्याला ‘अहंकार’रूपी झुली अजिबातच आवश्यक नसतात.</p>
+
+        <div class="separator-centered py-6 text-amber-600/80 dark:text-amber-400/80 text-xl font-medium tracking-widest" aria-hidden="true">
+          ✬✬✬
+        </div>
+
+        <div class="separator-centered text-stone-600 dark:text-stone-400 text-lg font-medium tracking-widest py-1">
+          २०२३०११३
+        </div>
+
+        <div class="separator-centered py-4 text-amber-600/80 dark:text-amber-400/80 text-xl font-medium tracking-widest" aria-hidden="true">
+          ✬✬
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <script>
+    (function () {
+      const themeToggle = document.getElementById('themeToggle');
+      const sunIcon = document.getElementById('sunIcon');
+      const moonIcon = document.getElementById('moonIcon');
+      const shareBtn = document.getElementById('shareBtn');
+      const toast = document.getElementById('toast');
+
+      // Theme Management
+      function updateThemeIcons(isDark) {
+        if (isDark) {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        } else {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        }
+      }
+
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem('theme');
+      const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      updateThemeIcons(isDark);
+
+      themeToggle.addEventListener('click', function () {
+        const currentlyDark = document.documentElement.classList.contains('dark');
+        if (currentlyDark) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          updateThemeIcons(false);
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          updateThemeIcons(true);
+        }
+      });
+
+      // Toast feedback helper
+      let toastTimeout = null;
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+        toast.classList.add('opacity-100', 'translate-y-0');
+
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(function () {
+          toast.classList.remove('opacity-100', 'translate-y-0');
+          toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+        }, 2500);
+      }
+
+      // Share Functionality (Web Share API with fallback to copy link)
+      shareBtn.addEventListener('click', function () {
+        const shareData = {
+          title: 'अहंकारांच्या झुली',
+          text: 'अहंकारांच्या झुली - एक वैचारिक चिंतन',
+          url: window.location.href,
+        };
+
+        if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+          navigator.share(shareData).catch(function (err) {
+            if (err.name !== 'AbortError') {
+              copyToClipboard(window.location.href);
+            }
+          });
+        } else {
+          copyToClipboard(window.location.href);
+        }
+      });
+
+      function copyToClipboard(text) {
+        try {
+          const tempInput = document.createElement('input');
+          tempInput.value = text;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand('copy');
+          document.body.removeChild(tempInput);
+          showToast('लिंक कॉपी झाली!');
+        } catch (e) {
+          showToast('लिंक कॉपी करणे शक्य झाले नाही');
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
